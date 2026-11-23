@@ -30,12 +30,13 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file(signingProps.getProperty("KEYSTORE_FILE"))
+            storeFile = signingProps.getProperty("KEYSTORE_FILE")?.let { file(it) }
             storePassword = signingProps.getProperty("KEYSTORE_PASSWORD")
             keyAlias = signingProps.getProperty("KEY_ALIAS")
             keyPassword = signingProps.getProperty("KEY_PASSWORD")
         }
     }
+
 
     buildTypes {
         debug {
